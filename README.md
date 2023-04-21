@@ -6,8 +6,9 @@ It is python version of Raindrop Generation Algorithm described in https://githu
 **Only depends on numpy and opencv-python.**
 
 <center>
-  <img src="./figures/demo.jpg" width="45%" />
-  <img src="./figures/demo_res.jpg" width="45%" />
+  <img src="./figures/demo.jpg" width="35%" />
+  &emsp;&emsp;&emsp;&emsp;
+  <img src="./figures/demo_res.jpg" width="35%" />
   <br/>
   <font color="AAAAAA">origin</front>
   &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
