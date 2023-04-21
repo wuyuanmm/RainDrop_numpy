@@ -81,19 +81,8 @@ class Rain:
             tau.append(random.randint(30,45)/180.0*math.pi)
             random.seed()
             random_loc=random.random()
-            loc.append(random_loc)
+            loc.append(random_loc) 
         
-        # random_rain=10
-        # for i in range(random_rain):
-
-        #     u=left_bottom[0,0]+(right_bottom[0,0]-left_bottom[0,0])*0.5
-        #     v=left_upper[0,1]+(right_bottom[0,1]-left_upper[0,1])*0.1
-        #     uv.append([u,v])
-            
-        #     tau.append(35/180.0*math.pi)
-        #     random_loc=0.8
-        #     loc.append(random_loc)
-                        
         random_loc=np.array(loc)
         random_tau=np.array(tau)
         uv=np.array(uv)
@@ -101,27 +90,9 @@ class Rain:
         r_sphere=glass_r/np.sin(random_tau)
 
         w=self.w_in_plane(uv).reshape((-1,1))
-        #print(uv.shape,w.shape)
-
         g_c=np.hstack((uv,w))
-        
-        
-
         c=g_c-(r_sphere*np.cos(random_tau)).reshape((-1,1))*(self.normal.reshape((1,-1)))
-        #print(c.shape)
-        #exit()
-        # g_centers.append(g_c)
-        # g_radius.append(glass_r)
-        # centers.append(c)
-        # radius.append(r_sphere)
-        # print("================================================================")
-        # print(g_c)
-        # print(glass_r)
-        # print(c)
-        # print(r_sphere)
-        # print(self.normal)
-        # exit()
-        #print(g_c.shape,glass_r.shape,c.shape,r_sphere.shape)
+        
         return g_c,glass_r,c,r_sphere
     
 
@@ -139,18 +110,9 @@ class Rain:
             valid_idx=np.where(f<=g_radius)
             if valid_idx[0].shape[0]==0:
                 continue
-            #invalid_idx=np.where(f>g_radius)
-            #idx=valid_idx[0][0]
             idx.append(valid_idx[0][0])
             p_g.append(p_v)
             xy_pos.append(xy[i,:])
-            # center=centers[idx]
-            # r_sphere=radius[idx]
-            # print(valid_idx)
-            # print(idx)
-            # print(xy[i,:])
-            # print(center)
-            # print(r_sphere)
         if len(idx)==0:
             return None,None,None
           
@@ -159,18 +121,12 @@ class Rain:
 
         alpha=np.arccos(p_g.dot(self.normal)/np.linalg.norm(p_g,axis=1) )
         beta=np.arcsin(self.n_air*np.sin(alpha)/self.n_water)
-        #print(self.o_g.shape)
         po=p_g-self.o_g
         po_norm=np.linalg.norm(po,axis=1)
         po=(po.T/po_norm).T
-        # print(p_g.shape)
-        # print(po.shape,po_norm.shape,beta.shape)
-        # print(po[0,:])
-        # exit()
         i_1=self.normal+po*(np.tan(beta).reshape((-1,1)))
         i_1_norm=np.linalg.norm(i_1,axis=1)
         i_1=(i_1.T/i_1_norm).T
-        #i_1=i_1/np.linalg.norm(i_1)
         calc_centers=centers[idx]
         calc_radius=radius[idx]
 
@@ -194,16 +150,10 @@ class Rain:
         p_a_norm=np.linalg.norm(p_a,axis=1)
         p_a=(p_a.T/p_a_norm).T
         
-        #print(normal_w[0],calc_centers[0],p_w[0])
-        #print(p_w.shape,i_1.shape,p_g.shape,normal_w.shape)
-        #print(p_a.shape,p_a[0])
-        #exit()
         eta=np.arccos(np.sum(normal_w*pwg,axis=1)/pwg_norm)
-        #print(eta[0],self.gamma)
-        
         valid_idx=np.where(eta<self.gamma)
         invalid_idx=np.where(eta>=self.gamma)
-        #print(eta.shape)
+
 
         
         xy_pos_invalid=xy_pos[invalid_idx]
@@ -212,9 +162,6 @@ class Rain:
             return None,None,xy_pos_invalid
         
         xy_pos_valid=xy_pos[valid_idx]
-        #print(xy_pos_valid.shape)
-        #print(xy_pos_invalid.shape)
-        
         eta=eta[valid_idx]
         p_w=p_w[valid_idx]
         p_a=p_a[valid_idx]
@@ -228,9 +175,6 @@ class Rain:
 
         z=self.intrinsic@(p_e.T)/self.B
         z=np.round(z.T).astype(np.int32)
-        #pos_id_valid=valid_idx[0].astype(np.int32).tolist()
-        #xy_pos_valid=xy_pos[pos_id_valid]
-        #print("aaaaaaaaaaaaa")
         return z,xy_pos_valid,xy_pos_invalid
     
     def render(self,image):
@@ -245,8 +189,6 @@ class Rain:
         z,xy_pos_valid,xy_pos_invalid=self.to_sphere_section_env(xy,g_c,glass_r,c,r_sphere)
         if xy_pos_invalid is None:
             return
-        #print(xy_pos_invalid)
-        #print(xy_pos_invalid.shape)
         rain_image[xy_pos_invalid[:,1],xy_pos_invalid[:,0],:]=0
         
         if xy_pos_valid is None:
@@ -283,10 +225,8 @@ if __name__=='__main__':
     psi=random.randint(30,45)
     random.seed()
     ksz=random.randint(5,8)    
-    #rain=Rain(150,4598,39)
     rain=Rain(M,B,psi)
     kernel=rain.get_kernel(ksz)
-    #print(kernel)
     print(M,B,psi,ksz)
     rain_image,mask=rain.render(image)
     blur_image=rain.blur(kernel,image,rain_image,mask)
