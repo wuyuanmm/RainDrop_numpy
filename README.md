@@ -5,17 +5,11 @@ It is python version of Raindrop Generation Algorithm described in https://githu
 
 **Only depends on numpy and opencv-python.**
 
-<center>
-  <img src="./figures/demo.jpg" width="35%" />
-  &emsp;&emsp;&emsp;&emsp;
-  <img src="./figures/demo_res.jpg" width="35%" />
-  <br/>
-  <font color="AAAAAA">origin</front>
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-  <font color="AAAAAA">result</front>
-</center>
-<br/>
+`origin`
+![origin](./figures/demo.jpg)
+
+`result`
+![result](./figures/demo_res.jpg)
 
 **Picture:**  *Visual comparison of raindrop generation*
 
