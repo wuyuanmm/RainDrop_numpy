@@ -6,9 +6,11 @@ It is python version of Raindrop Generation Algorithm described in https://githu
 **Only depends on numpy and opencv-python.**
 
 `origin`
+
 ![origin](./figures/demo.jpg)
 
 `result`
+
 ![result](./figures/demo_res.jpg)
 
 **Picture:**  *Visual comparison of raindrop generation*
