@@ -1,15 +1,29 @@
-# RainDrop_numpy
-RainDrop generation using method of https://github.com/DreamtaleCore/RaindropRmv
+## RainDrop_numpy
+![Python 3.6](https://img.shields.io/badge/python-3.6-DodgerBlue.svg?style=plastic)
 
-# Using
 It is python version of Raindrop Generation Algorithm described in https://github.com/DreamtaleCore/RaindropRmv.
 
-# [Citations](https://github.com/DreamtaleCore/RaindropRmv)
-···@inproceedings{hao2019learning,
+**Only depends on numpy and opencv-python.**
+
+<center>
+  <img src="./figures/demo.jpg" width="45%" />
+  <img src="./figures/demo_res.jpg" width="45%" />
+  <br/>
+  <font color="AAAAAA">origin</front>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  <font color="AAAAAA">result</front>
+</center>
+<br/>
+
+**Picture:**  *Visual comparison of raindrop generation*
+
+## [Citations](https://github.com/DreamtaleCore/RaindropRmv)
+`@inproceedings{hao2019learning,
   title={Learning from synthetic photorealistic raindrop for single image raindrop removal},
   author={Hao, Zhixiang and You, Shaodi and Li, Yu and Li, Kunming and Lu, Feng},
   booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision Workshops},
   pages={0--0},
   year={2019}
-}···
+}`
 
