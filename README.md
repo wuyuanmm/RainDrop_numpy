@@ -1,7 +1,7 @@
 ## RainDrop_numpy
 ![Python 3.6](https://img.shields.io/badge/python-3.6-DodgerBlue.svg?style=plastic)
 
-It is python version of Raindrop Generation Algorithm described in https://github.com/DreamtaleCore/RaindropRmv.
+It is a python version of Raindrop Generation Algorithm described in https://github.com/DreamtaleCore/RaindropRmv.
 
 **Only depends on numpy and opencv-python.**
 
